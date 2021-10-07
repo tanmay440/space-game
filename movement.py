@@ -3,8 +3,10 @@ pygame.init()
 
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
+#movement class
 class Player:
-    def __init__(self, x, y, width, height, vel, sh, sw, win, sprite) -> None:
+
+    def __init__(self, x, y, width, height, vel, sh, sw, win, sprite, PLANETS = []) -> None:
         self.x = x
         self.y = y
         self.win = win
@@ -15,8 +17,11 @@ class Player:
         self.sw = sw
         self.sprite = sprite
         self.facing = "idle"
-    def move(self):
+        self.planets = PLANETS
 
+
+    def move(self):
+#        has_colided(self)
         keys = pygame.key.get_pressed()
         self.facing = "idle"
         if keys[pygame.K_LEFT] and self.x > self.vel:  # Making sure the top left position of our character is greater than our vel so we never move off the screen.
@@ -32,9 +37,13 @@ class Player:
         if keys[pygame.K_DOWN] and self.y < self.sh - self.height - self.vel:
             self.y += self.vel
             self.facing = "down"
+
     def draw(self):
         self.win.blit(self.sprite, (self.x, self.y, self.width, self.height))
         pygame.display.update()
+
+#gameloop stuff
+
 clock = pygame.time.Clock()
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
