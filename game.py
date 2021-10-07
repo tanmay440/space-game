@@ -35,12 +35,13 @@ class Player:
     def draw(self):
         self.win.blit(self.sprite, (self.x, self.y, self.width, self.height))
         pygame.display.update()
-
+clock = pygame.time.Clock()
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
-player = Player(0, 0, 80, 80, 1, 500, 500, win, pygame.image.load("temp0.png"))
+player = Player(0, 0, 80, 80, 10, 500, 500, win, pygame.image.load("temp0.png"))
 run = True
 while run:
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
