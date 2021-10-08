@@ -1,4 +1,5 @@
 import pygame
+import collision
 pygame.init()
 
 win = pygame.display.set_mode((500,500))
@@ -19,7 +20,14 @@ class Player:
         self.facing = "idle"
         self.planets = PLANETS
 
-
+    def has_colided(self):
+        self.r = collision.Planet_Collision((((self.width)**2)+((self.height)**2))**0.5, self.x, self.y)
+        i = 0
+        for x, y, r in self.planets:
+            i += 1
+            if self.r.has_colided(r, x, y):
+                return i
+    
     def move(self):
 #        has_colided(self)
         keys = pygame.key.get_pressed()
@@ -49,6 +57,7 @@ win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
 player = Player(0, 0, 80, 80, 10, 500, 500, win, pygame.image.load("temp0.png"))
 run = True
+test_planets = [(1, 2, 3), (3, 4, 5)]
 while run:
     clock.tick(60)
     for event in pygame.event.get():
