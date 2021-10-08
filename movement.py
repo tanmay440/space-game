@@ -23,7 +23,7 @@ class Player:
     def has_colided(self):
         self.r = collision.Planet_Collision((((self.width)**2)+((self.height)**2))**0.5, self.x, self.y)
         i = 0
-        for x, y, r in self.planets:
+        for x, y, r, _ in self.planets:
             i += 1
             if self.r.has_colided(r, x, y):
                 return i
@@ -31,7 +31,8 @@ class Player:
     def move(self):
         x = self.has_colided()
         if x != None:
-            return
+            pass
+            #return
         keys = pygame.key.get_pressed()
         self.facing = "idle"
         if keys[pygame.K_LEFT] and self.x > self.vel:  # Making sure the top left position of our character is greater than our vel so we never move off the screen.
@@ -57,7 +58,7 @@ class Player:
 clock = pygame.time.Clock()
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
-test_planets = [(256, 256, 50)]
+test_planets = [(256, 256, 50, "bitchball")]
 player = Player(0, 0, 80, 80, 10, 500, 500, win, pygame.image.load("temp0.png"), test_planets)
 run = True
 
@@ -66,6 +67,10 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if pygame.mouse.get_pressed()[0]:
+            player.vel += 1
+        elif pygame.mouse.get_pressed()[2]:
+            player.vel -= 1
     win.fill([0, 0, 0])
     win.blit(pygame.image.load("beachball0.png"), (96, 96, 320, 320))
     player.move()
