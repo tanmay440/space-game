@@ -31,7 +31,7 @@ class Player:
     def move(self):
         x = self.has_colided()
         if x != None:
-            print("Nothing broke")
+            return
         keys = pygame.key.get_pressed()
         self.facing = "idle"
         if keys[pygame.K_LEFT] and self.x > self.vel:  # Making sure the top left position of our character is greater than our vel so we never move off the screen.
@@ -57,7 +57,7 @@ class Player:
 clock = pygame.time.Clock()
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
-test_planets = [(96, 96, 160)]
+test_planets = [(256, 256, 50)]
 player = Player(0, 0, 80, 80, 10, 500, 500, win, pygame.image.load("temp0.png"), test_planets)
 run = True
 
@@ -70,6 +70,14 @@ while run:
     win.blit(pygame.image.load("beachball0.png"), (96, 96, 320, 320))
     player.move()
     player.draw()
-#    print("haha")
-#256    
+'''
+    if player.x < player.vel:
+        print("left")
+    elif player.y < player.vel:
+        print("up")
+    elif player.x< player.sw-player.vel-player.width:
+        print("right")
+    elif  player.y < player.sh-player.height-player.vel:
+        print("down")
+'''
 pygame.quit()

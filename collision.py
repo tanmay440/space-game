@@ -10,6 +10,6 @@ class Planet_Collision():
         self.ox = ox
         self.oy =oy
         
-        if (((self.x - self.y)**2)+((self.y-self.oy)**2))**0.5 <= self.ora+self.r:
+        if (((self.x - self.ox)**2)+((self.y-self.oy)**2))**0.5 <= self.ora+self.r:
             return True
         return False
