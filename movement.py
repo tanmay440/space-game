@@ -57,7 +57,7 @@ class Player:
 clock = pygame.time.Clock()
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("Game")
-test_planets = [(96, 96, 100)]
+test_planets = [(96, 96, 160)]
 player = Player(0, 0, 80, 80, 10, 500, 500, win, pygame.image.load("temp0.png"), test_planets)
 run = True
 
