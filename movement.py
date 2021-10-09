@@ -75,14 +75,14 @@ while run:
     win.blit(pygame.image.load("beachball0.png"), (96, 96, 320, 320))
     player.move()
     player.draw()
-'''
+
     if player.x < player.vel:
         print("left")
-    elif player.y < player.vel:
+    if player.y < player.vel:
         print("up")
-    elif player.x< player.sw-player.vel-player.width:
-        print("right")
-    elif  player.y < player.sh-player.height-player.vel:
+    if not player.y < player.sh-player.height-player.vel:
         print("down")
-'''
+    if not player.x < player.sw-player.vel-player.width:
+        print("right")
+    
 pygame.quit()
